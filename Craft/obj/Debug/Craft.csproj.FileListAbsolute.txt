@@ -3,3 +3,8 @@ c:\users\fanton-21126\documents\visual studio 2013\Projects\Craft\Craft\bin\Debu
 c:\users\fanton-21126\documents\visual studio 2013\Projects\Craft\Craft\bin\Debug\Craft.pdb
 c:\users\fanton-21126\documents\visual studio 2013\Projects\Craft\Craft\obj\Debug\Craft.dll
 c:\users\fanton-21126\documents\visual studio 2013\Projects\Craft\Craft\obj\Debug\Craft.pdb
+C:\Users\polluX\Documents\Visual Studio 2013\Projects\Craft\Craft\obj\Debug\Craft.csprojResolveAssemblyReference.cache
+C:\Users\polluX\Documents\Visual Studio 2013\Projects\Craft\Craft\obj\Debug\Craft.dll
+C:\Users\polluX\Documents\Visual Studio 2013\Projects\Craft\Craft\bin\Debug\Craft.dll
+C:\Users\polluX\Documents\Visual Studio 2013\Projects\Craft\Craft\bin\Debug\Craft.pdb
+C:\Users\polluX\Documents\Visual Studio 2013\Projects\Craft\Craft\obj\Debug\Craft.pdb

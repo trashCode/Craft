@@ -1,0 +1,5 @@
+c:\users\fanton-21126\documents\visual studio 2013\Projects\Craft\Craft\obj\Debug\Craft.csprojResolveAssemblyReference.cache
+c:\users\fanton-21126\documents\visual studio 2013\Projects\Craft\Craft\bin\Debug\Craft.dll
+c:\users\fanton-21126\documents\visual studio 2013\Projects\Craft\Craft\bin\Debug\Craft.pdb
+c:\users\fanton-21126\documents\visual studio 2013\Projects\Craft\Craft\obj\Debug\Craft.dll
+c:\users\fanton-21126\documents\visual studio 2013\Projects\Craft\Craft\obj\Debug\Craft.pdb

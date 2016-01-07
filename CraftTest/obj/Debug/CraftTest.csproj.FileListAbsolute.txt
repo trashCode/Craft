@@ -1,0 +1,8 @@
+C:\Users\FANTON-21126\Documents\Visual Studio 2013\Projects\Craft\CraftTest\bin\Debug\CraftTest.exe.config
+C:\Users\FANTON-21126\Documents\Visual Studio 2013\Projects\Craft\CraftTest\bin\Debug\CraftTest.exe
+C:\Users\FANTON-21126\Documents\Visual Studio 2013\Projects\Craft\CraftTest\bin\Debug\CraftTest.pdb
+C:\Users\FANTON-21126\Documents\Visual Studio 2013\Projects\Craft\CraftTest\bin\Debug\Craft.dll
+C:\Users\FANTON-21126\Documents\Visual Studio 2013\Projects\Craft\CraftTest\bin\Debug\Craft.pdb
+C:\Users\FANTON-21126\Documents\Visual Studio 2013\Projects\Craft\CraftTest\obj\Debug\CraftTest.csprojResolveAssemblyReference.cache
+C:\Users\FANTON-21126\Documents\Visual Studio 2013\Projects\Craft\CraftTest\obj\Debug\CraftTest.exe
+C:\Users\FANTON-21126\Documents\Visual Studio 2013\Projects\Craft\CraftTest\obj\Debug\CraftTest.pdb

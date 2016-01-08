@@ -9,6 +9,7 @@ namespace CraftTest
     {
         static void Main(string[] args)
         {
+            /*
             Craft x = new Craft("simpleCraft0");
             Craft y = new Craft("simpleCraft1");
             Craft z = new Craft("complexCraft");
@@ -24,7 +25,20 @@ namespace CraftTest
             {
                 Console.WriteLine(c.name);
             }
+            */
+            Craft.initSample();
+            Craft.create("iron ore",0);
+            Craft.create("copper ore",0);
 
+            Craft.create("iron lingot",10);
+            Craft.create("copper lingot",10);
+            
+            Craft.get("iron lingot").add(Craft.get("iron ore"), 5);
+            
+            Craft.create("metal plate",1);
+            Craft.get("metal plate").add(Craft.get("iron lingot"),2);
+            
+            Craft.get("metal plate").showRecipe(1);
             
         }
     }

@@ -42,6 +42,98 @@ public class Craft
 
 
     /**********************************
+    Internal functions (all are public for now, might change soon)             
+    **********************************/
+
+    public Dictionary<Craft, int> getRecipe(int targetLevel)
+    {
+        Dictionary<Craft, int> result = new Dictionary<Craft, int>(this.recipe);
+        return Craft.getRecipe(result, targetLevel);
+    }
+
+    public void add(Craft craft, int qt)
+    {
+        //todo : verifier que les compo et sous compo ne contient pas this => pour eviter les redondances cycliques
+        if (this.recipe.ContainsKey(craft))
+        {
+            this.recipe[craft] += qt;
+        } else
+        {
+            this.recipe.Add(craft, qt);
+        }
+        this.level = this.getLevel();
+    }
+
+    public void add(String craftName, int qt = 1)
+    {
+        if (exists(craftName))
+        {
+            this.add(get(craftName), qt);
+        } else
+        {
+            throw new Exception(String.Format("Craft \"{0}\" does not exist", craftName));
+        }
+    }
+
+    public Dictionary<Craft, int> multiplyRecipe(int factor)
+    {
+        Dictionary<Craft, int> rs = new Dictionary<Craft, int>();
+
+        foreach (KeyValuePair<Craft, int> compo in this.recipe)
+        {
+            rs.Add(compo.Key, compo.Value * factor);
+        }
+        return rs;
+    }
+
+    public int getLevel()
+    {
+
+        if (this.recipe.Count < 1)
+        {
+            return 0;
+        } else
+        {
+
+            int max = 0;
+
+            //il faut iterer un dictionnaire
+            foreach (KeyValuePair<Craft, int> compo in this.recipe)
+            {
+                max = System.Math.Max(max, compo.Key.getLevel());
+            }
+
+            return max + 1;
+        }
+
+
+    }
+
+    public void showRecipe(int level)
+    {
+        Console.WriteLine("{0}\n{1}", this.name, new String('=', this.name.Length));
+        Craft.showRecipe(this.getRecipe(level));
+    }
+
+    //obsolete.
+    public void incorporate(Dictionary<Craft, int> subRecipe)
+    {
+        Console.WriteLine("OBSOLETE FUNCTION CALLED");
+
+        foreach (KeyValuePair<Craft, int> compo in subRecipe)
+        {
+
+            if (this.recipe.ContainsKey(compo.Key))
+            {
+                this.recipe[compo.Key] += compo.Value;
+            } else
+            {
+                this.recipe.Add(compo.Key, compo.Value);
+            }
+        }
+    }
+
+    /**********************************
     Static functions for console interface             
     **********************************/
     private static Boolean exists(string name){
@@ -68,6 +160,13 @@ public class Craft
         throw new Exception("Craft not found");
     }
 
+    public static void showAll(){
+        foreach (Craft c in Craft.craftotheque)
+        {
+            Console.WriteLine(c.name);
+        }
+    }
+
     public static void create(string name,int batchSize)
     {
         try
@@ -85,50 +184,6 @@ public class Craft
         }
     }
 
-
-    /**********************************
-    Internal functions (all are public for now, might change soon)             
-    **********************************/
-
-
-    public void add(Craft craft, int qt)
-    {
-        //todo : verifier que les compo et sous compo ne contient pas this => pour eviter les redondances cycliques
-        if (this.recipe.ContainsKey(craft))
-        {
-            this.recipe[craft] += qt;
-        }
-        else
-        {
-            this.recipe.Add(craft, qt);
-        }
-        this.level = this.getLevel();
-    }
-
-    public int getLevel()
-    {
-
-        if (this.recipe.Count < 1)
-        {
-            return 0;
-        }
-        else
-        {
-
-            int max = 0;
-
-            //il faut iterer un dictionnaire
-            foreach (KeyValuePair<Craft, int> compo in this.recipe)
-            {
-                max = System.Math.Max(max, compo.Key.getLevel());
-            }
-
-            return max + 1;
-        }
-
-
-    }
-
     public static Dictionary<Craft, int> multiplyRecipe(Dictionary<Craft, int> recipe, int factor)
     {
         Dictionary<Craft, int> rs = new Dictionary<Craft, int>();
@@ -139,18 +194,7 @@ public class Craft
         }
         return rs;
     }
-
-    public Dictionary<Craft, int> multiplyRecipe(int factor)
-    {
-        Dictionary<Craft, int> rs = new Dictionary<Craft, int>();
-
-        foreach (KeyValuePair<Craft, int> compo in this.recipe)
-        {
-            rs.Add(compo.Key, compo.Value * factor);
-        }
-        return rs;
-    }
-
+    
     public static void incorporate(Dictionary<Craft, int> recipe, Dictionary<Craft, int> subRecipe)
     {
         foreach (KeyValuePair<Craft, int> compo in subRecipe)
@@ -166,32 +210,6 @@ public class Craft
             }
         }
     }
-
-    //obsolete.
-    public void incorporate(Dictionary<Craft, int> subRecipe)
-    {
-
-        foreach (KeyValuePair<Craft, int> compo in subRecipe)
-        {
-
-            if (this.recipe.ContainsKey(compo.Key))
-            {
-                this.recipe[compo.Key] += compo.Value;
-            }
-            else
-            {
-                this.recipe.Add(compo.Key, compo.Value);
-            }
-        }
-    }
-
-    public Dictionary<Craft, int> getRecipe(int targetLevel)
-    {
-        Dictionary<Craft, int> result = new Dictionary<Craft, int>(this.recipe);
-        return Craft.getRecipe(result, targetLevel);
-    }
-
-
 
     public static Dictionary<Craft, int> getRecipe(Dictionary<Craft,int> recipe, int targetLevel)
     {
@@ -254,16 +272,29 @@ public class Craft
         }
     }
 
-    public void showRecipe(int level)
-    {
-        Console.WriteLine("{0}\n{1}", this.name, new String('=' , this.name.Length) );
-        Craft.showRecipe(this.getRecipe(level));
-    }
-
     public static void initSample()
     {
-        Craft.create("iron lingot",10);
-        Craft.create("copper lingot",10);
+        Craft.create("iron ore", 1);
+        Craft.create("copper ore", 1);
+        Craft.create("silicon ore", 1);
+        Craft.create("cobalt ore", 1);
+
+
+        
+        Craft.create("iron ingot",10);
+        (Craft.get("iron ingot")).add("iron ore", 5);
+
+        Craft.create("copper ingot", 10);
+        (Craft.get("copper ingot")).add("copper ore", 5);
+
+        Craft.create("silicon ingot", 10);
+        (Craft.get("silicon ingot")).add("silicon ore", 5);
+
+        Craft.create("cobalt ingot", 10);
+        (Craft.get("cobalt ingot")).add("cobalt ore", 5);
+
+        Craft.create("metal plate", 10);
+        (Craft.get("metal plate")).add("iron ingot", 5);
     }
 
 }//end class Craft
